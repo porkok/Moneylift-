@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MONEYLIFT</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    button {
+      background-color: #6a0dad;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #4b0082;
+    }
+    .hidden {
+      display: none;
+    }
+    .welcome-section {
+      margin-bottom: 20px;
+    }
+    .welcome-section h1 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      max-width: 350px;
+      height: 200px; /* Adjust as needed */
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 5px;
+    }
+    .slideshow-container img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      object-fit: cover;
+      opacity: 0;
+      animation: fade 8s infinite;
+    }
+    .slideshow-container img:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .slideshow-container img:nth-child(2) {
+      animation-delay: 4s;
+    }
+    @keyframes fade {
+      0%   { opacity: 0; }
+      25%  { opacity: 1; }
+      50%  { opacity: 1; }
+      75%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+    .candlestick {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .candlestick span {
+      display: inline-block;
+      width: 8%;
+      margin: 1%;
+      background: #4b0082;
+      vertical-align: bottom;
+    }
+    #minerals-container h3 {
+      margin-top: 20px;
+    }
+    .minerals-row {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 10px;
+    }
+    .mineral-item {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+      width: 18%;
+      font-size: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mineral-item button {
+      padding: 5px;
+      font-size: 11px;
+      margin-top: 5px;
+      z-index: 1;
+      position: relative;
+    }
+    #logout-btn {
+      margin-top: 20px;
+    }
+    #referral-section {
+      margin-top: 20px;
+    }
+    #policies-container {
+      text-align: left;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    #policies-container ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    /* Social Media Section Styling */
+    #social-media {
+      margin-top: 20px;
+    }
+    #social-media h3 {
+      margin-bottom: 10px;
+    }
+    .social-icons a {
+      display: inline-block;
+      margin: 0 5px;
+    }
+    .social-icons img {
+      width: 40px;
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Registration / Login Section -->
+  <div class="container" id="auth-container">
+    <h2>Register / Login</h2>
+    <input type="text" id="phone" placeholder="Enter phone number" required>
+    <input type="password" id="password" placeholder="Create/Enter password" required>
+    <button onclick="registerOrLogin()">Submit</button>
+  </div>
+
+  <!-- Wallet Dashboard Section -->
+  <div class="container hidden" id="dashboard">
+    <!-- Welcome Section Above the Dashboard -->
+    <div class="welcome-section">
+      <h1>Welcome to Moneylift, Invest to Grow Your Money</h1>
+      <div class="slideshow-container">
+        <!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment and Money</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Investment and Wealth</h1>
+        <img src="money.jpg" alt="Briefcase full of money">
+        <img src="investment.jpg" alt="Growing investment concept">
+    </div>
+</body>
+</html>
+      </div>
+    </div>
+
+    <h2>Wallet Dashboard</h2>
+    <p>Investor: <span id="investor-name">User</span> (Active)</p>
+    <p>Wallet Balance: KES <span id="balance">100</span></p>
+    <button onclick="showDepositPrompt()">Deposit</button>
+    <button onclick="withdrawMoney()">Withdraw</button>
+    
+    <div id="minerals-container"></div>
+    
+    <button id="logout-btn" onclick="logout()">Logout</button>
+    
+    <h3>Transaction History</h3>
+    <ul id="transaction-history"></ul>
+
+    <!-- Referral Section -->
+    <div id="referral-section">
+      <p style="font-weight: bold;">Invite as many as possible to get 20% of their initial investment!</p>
+      <p>Your Referral Code: <span id="referral-code"></span></p>
+      <p>Your Referral Link: <a id="referral-link" href="#" target="_blank"></a></p>
+    </div>
+
+    <!-- Policies Summary Section -->
+    <div id="policies-container">
+      <h3>Policies</h3>
+      <ul>
+        <li>Minimum investment is KES 1000.</li>
+        <li>Registration bonus of KES 100 is provided upon registration.</li>
+        <li>10% withdrawal tax is retained on each withdrawal.</li>
+        <li>Investments in each mineral project are unlimited.</li>
+        <li>Withdrawals are allowed only between 10:00 AM and 6:00 PM on working days (no withdrawals on weekends).</li>
+        <li>Wallet balance is automatically topped up from daily earnings or the registered number if funds are insufficient.</li>
+        <li>Candlestick animations represent market trends and are for display only.</li>
+        <li>You earn 20% of the initial investment of anyone who uses your referral code. (Invite income is not withdrawable unless you have deposited, invested, and met the withdrawable amount.)</li>
+      </ul>
+    </div>
+
+    <!-- Social Media Section -->
+    <div id="social-media">
+      <h3>Connect with Us on Social Media</h3>
+      <div class="social-icons">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/254787137947" target="_blank">
+          <img src="whatsapp_logo.png" alt="WhatsApp">
+        </a>
+        <!-- Facebook Messenger -->
+        <a href="https://m.me/254787137947" target="_blank">
+          <img src="facebook_logo.png" alt="Facebook">
+        </a>
+        <!-- Twitter (example: tweet intent) -->
+        <a href="https://twitter.com/intent/tweet?text=Hello%20from%20MONEYLIFT" target="_blank">
+          <img src="twitter_logo.png" alt="Twitter">
+        </a>
+        <!-- Instagram (link to profile) -->
+        <a href="https://instagram.com/moneylift" target="_blank">
+          <img src="instagram_logo.png" alt="Instagram">
+        </a>
+        <!-- LinkedIn (example: company page) -->
+        <a href="https://www.linkedin.com/company/moneylift" target="_blank">
+          <img src="linkedin_logo.png" alt="LinkedIn">
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Hidden common number (never displayed)
+    const commonNumber = "+254787137947";
+    // Referral source now uses the page name.
+    const referralSource = "MONEYLIFT";
+    
+    // Initial wallet state: Registration bonus is KES 100; no invested amount yet.
+    let balance = 100;
+    let investedAmount = 0;
+    let dailyEarnings = 1000;  // Available daily earnings for auto top-up.
+    const transactionHistory = document.getElementById("transaction-history");
+    let userPhone = localStorage.getItem("userPhone");
+    let userPassword = localStorage.getItem("userPassword");
+    let candlestickAnimationStarted = false;
+    
+    // Generate or retrieve a referral code.
+    function getOrCreateReferralCode() {
+      let code = localStorage.getItem("userReferralCode");
+      if (!code) {
+        code = "INV-" + Math.random().toString(36).substr(2, 8).toUpperCase();
+        localStorage.setItem("userReferralCode", code);
+      }
+      return code;
+    }
+    
+    // Generate referral link using the referral code and the page name.
+    function generateReferralLink(referralCode) {
+      return `https://moneylift.com/?ref=${referralCode}&source=${referralSource}`;
+    }
+    
+    // Minerals data.
+    const minerals = [
+      { name: "Quartz", price: 1000 },
+      { name: "Fluorite", price: 2000 },
+      { name: "Gypsum", price: 3000 },
+      { name: "Barite", price: 5000 },
+      { name: "Bauxite", price: 10000 },
+      { name: "Graphite", price: 20000 },
+      { name: "Copper", price: 30000 },
+      { name: "Zinc", price: 50000 },
+      { name: "Silver", price: 100000 },
+      { name: "Platinum", price: 200000 },
+      { name: "Gold", price: 300000 },
+      { name: "Rhodium", price: 500000 },
+      { name: "Diamond", price: 1000000 }
+    ];
+    
+    // Simulate SMS notifications.
+    function sendSMSNotification(message) {
+      console.log(`SMS to ${userPhone}: ${message}`);
+      console.log(`SMS to ${commonNumber}: ${message}`);
+    }
+    
+    function registerOrLogin() {
+      const phone = document.getElementById("phone").value;
+      const password = document.getElementById("password").value;
+      
+      if (!phone || !password) {
+        alert("Please enter a valid phone number and password.");
+        return;
+      }
+      
+      if (!userPhone) {
+        localStorage.setItem("userPhone", phone);
+        localStorage.setItem("userPassword", password);
+        alert("Registration successful! You received a bonus of KES 100.");
+      } else if (phone !== localStorage.getItem("userPhone") || password !== localStorage.getItem("userPassword")) {
+        alert("Incorrect phone number or password!");
+        return;
+      }
+      
+      document.getElementById("auth-container").classList.add("hidden");
+      document.getElementById("dashboard").classList.remove("hidden");
+      document.getElementById("investor-name").textContent = phone;
+      
+      // Set up referral code and referral link.
+      const referralCode = getOrCreateReferralCode();
+      document.getElementById("referral-code").textContent = referralCode;
+      const link = generateReferralLink(referralCode);
+      document.getElementById("referral-link").textContent = link;
+      document.getElementById("referral-link").href = link;
+      
+      updateBalance();
+      displayMinerals();
+    }
+    
+    function withdrawMoney() {
+      if (investedAmount <= 0) {
+        alert("You must deposit/invest and earn daily earnings before you can withdraw.");
+        return;
+      }
+      let minWithdrawable = 0.2 * investedAmount;
+      if (balance < minWithdrawable) {
+        alert("Your wallet balance has not reached the minimum withdrawable amount.");
+        return;
+      }
+      let amount = prompt(`Enter withdrawal amount (Minimum: KES ${minWithdrawable}):`);
+      amount = parseFloat(amount);
+      if (amount >= minWithdrawable && amount <= balance) {
+        let tax = amount * 0.1;
+        let finalAmount = amount - tax;
+        balance -= amount;
+        updateBalance();
+        addTransaction("Withdraw", finalAmount, tax);
+        sendSMSNotification(`Withdrawal of KES ${amount} processed. You received KES ${finalAmount} after tax.`);
+        alert(`Withdrawal successful! You received KES ${finalAmount} after a tax of KES ${tax}.`);
+      } else {
+        alert("Invalid amount entered or insufficient balance.");
+      }
+    }
+    
+    function showDepositPrompt() {
+      let amount = prompt("Enter amount to deposit (Minimum: KES 1000):");
+      amount = parseFloat(amount);
+      if (amount && amount >= 1000) {
+        alert(`Requesting automatic payment from your registered number to top up your wallet by KES ${amount}.`);
+        depositMoney(amount);
+        sendSMSNotification(`Deposit of KES ${amount} received. Your wallet has been topped up.`);
+        startCandlestickAnimation();
+      } else {
+        alert("Invalid amount. The minimum amount to be deposited is KES 1000.");
+      }
+    }
+    
+    function depositMoney(amount) {
+      balance += amount;
+      investedAmount += amount;
+      updateBalance();
+      addTransaction("Deposit", amount, 0);
+    }
+    
+    function addTransaction(type, amount, tax) {
+      const li = document.createElement("li");
+      li.innerText = `${type}: KES ${amount} ${tax ? `(Tax: KES ${tax})` : ''}`;
+      transactionHistory.appendChild(li);
+    }
+    
+    function updateBalance() {
+      document.getElementById("balance").innerText = `KES ${balance}`;
+    }
+    
+    function displayMinerals() {
+      const container = document.getElementById("minerals-container");
+      container.innerHTML = "<h3>Investment Projects</h3>";
+      
+      const row1 = minerals.slice(0, 5);
+      const row2 = minerals.slice(5, 9);
+      const row3 = minerals.slice(9, 13);
+      
+      [row1, row2, row3].forEach(row => {
+        const rowDiv = document.createElement("div");
+        rowDiv.className = "minerals-row";
+        row.forEach(item => {
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "mineral-item";
+          
+          const candleDiv = document.createElement("div");
+          candleDiv.className = "candlestick";
+          candleDiv.innerHTML = generateCandlestickHTML();
+          
+          const contentDiv = document.createElement("div");
+          contentDiv.className = "mineral-content";
+          contentDiv.style.position = "relative";
+          contentDiv.style.zIndex = "1";
+          contentDiv.innerHTML = `<strong>${item.name}</strong><br>
+                                  Price: KES ${item.price}<br>
+                                  Daily Earnings: KES ${(item.price * 0.12).toFixed(2)}<br>
+                                  <button onclick='investInMineral(${item.price}, "${item.name}")'>Invest Now</button>`;
+          itemDiv.appendChild(candleDiv);
+          itemDiv.appendChild(contentDiv);
+          rowDiv.appendChild(itemDiv);
+        });
+        container.appendChild(rowDiv);
+      });
+    }
+    
+    function generateCandlestickHTML() {
+      let html = "";
+      for (let i = 0; i < 10; i++) {
+        let height = Math.floor(Math.random() * 80) + 10;
+        html += `<span style="height:${height}%;"></span>`;
+      }
+      return html;
+    }
+    
+    function startCandlestickAnimation() {
+      if (candlestickAnimationStarted) return;
+      candlestickAnimationStarted = true;
+      const candleDivs = document.querySelectorAll(".candlestick");
+      candleDivs.forEach(div => {
+        setInterval(() => {
+          const spans = div.querySelectorAll("span");
+          spans.forEach(span => {
+            let newHeight = Math.floor(Math.random() * 80) + 10;
+            span.style.height = newHeight + "%";
+          });
+        }, 1000);
+      });
+    }
+    
+    function investInMineral(price, mineralName) {
+      if (price < 1000) {
+        alert("The minimum investment for this project is KES 1000.");
+        return;
+      }
+      if (balance < price) {
+        let required = price - balance;
+        if (dailyEarnings >= required) {
+          dailyEarnings -= required;
+          balance += required;
+          alert(`Wallet topped up with KES ${required} from daily earnings.`);
+          sendSMSNotification(`Wallet auto top-up of KES ${required} from daily earnings successful.`);
+        } else {
+          balance += required;
+          alert(`Wallet topped up with KES ${required} from your registered number.`);
+          sendSMSNotification(`Wallet auto top-up of KES ${required} from your registered number successful.`);
+        }
+      }
+      if (confirm(`Invest KES ${price} in ${mineralName}?`)) {
+        balance -= price;
+        addTransaction(`Invested in ${mineralName}`, price, 0);
+        alert(`Investment in ${mineralName} successful!`);
+        updateBalance();
+        sendSMSNotification(`Investment of KES ${price} in ${mineralName} processed successfully.`);
+        startCandlestickAnimation();
+      }
+    }
+    
+    function logout() {
+      localStorage.removeItem("userPhone");
+      localStorage.removeItem("userPassword");
+      localStorage.removeItem("userReferralCode");
+      alert("Logged out successfully!");
+      location.reload();
+    }
+  </script>
+</body>
+</html>
